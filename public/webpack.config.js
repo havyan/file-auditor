@@ -1,13 +1,12 @@
 var webpack = require("webpack");
-var nodeExternals = require('webpack-node-externals');
+var path = require("path");
 
 module.exports = {
-    entry: "./test.js",
+    entry: "./app.js",
     target: 'node',
-    externals: [nodeExternals()],
     output: {
-        path: __dirname,
-        filename: "bundle.js"
+        path: path.resolve(__dirname, "production"),
+        filename: "app.js"
     },
     devtool: 'inline-source-map',
     module: {
@@ -24,11 +23,11 @@ module.exports = {
         }]
     },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin({
-          minimize: true,
-          compress: {
-              warnings: false
-          }
-      })
+        new webpack.optimize.UglifyJsPlugin({
+            minimize: true,
+            compress: {
+                warnings: false
+            }
+        })
     ]
 };
